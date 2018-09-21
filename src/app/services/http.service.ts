@@ -65,26 +65,20 @@ export class HttpService extends HttpClient {
   }
 
   private onSuccess(res: Response) {
-    const body = res.json();
+    const body = res;
     console.log('Request successful!');
     return body;
   }
 
   private onEnd(): void {
-    console.log('Make anithing on request ends!')
+    console.log('Make anything on request ends!')
   }
 
   public onError(res: Response): void {
-    console.log('Error, status code: ' + res.status);
-    let title;
+    console.log('Error, status code: ' + res);
+    let title  = "Erro";
     let message;
-    this.translate.get('shared.alert.access_denied').subscribe(data => title = data);
-    if (res.status === 401) {
-      this.translate.get('shared.alert.invalid_grant').subscribe(data => message = data);
-      this.alertService.openAlert('warn', title, message);
-    } else if (res.status === 403) {
-      this.translate.get('shared.alert.unknow_grant').subscribe(data => message = data);
-      this.alertService.openAlert('warn', title, message);
-    }
+    // this.translate.get('shared.alert.access_denied').subscribe(data => title = data);
+    this.alertService.openAlert('warn', title, JSON.stringify(res));
   }
 }

@@ -1,3 +1,4 @@
+import { HttpService } from './../services/http.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: HttpService) { }
 
   ngOnInit() {
+    this.service.doGet('http://localhost:9015/api/account').subscribe(data => {
+      debugger;
+    },
+      err => {
+        debugger;
+      })
   }
 
 }
