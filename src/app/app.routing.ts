@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { AccountRoutes } from './accounts/accounts.routing';
 import { PersonRoutes } from './persons/persons.routing';
+import { TransactionsRoutes } from './transactions/transactions.routing';
 
 const appRoutes: Routes = [
     { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -13,6 +14,7 @@ const appRoutes: Routes = [
     },
     ...AccountRoutes,
     ...PersonRoutes,
+    ...TransactionsRoutes,
     { path: '**', redirectTo: '' }
 
 ];

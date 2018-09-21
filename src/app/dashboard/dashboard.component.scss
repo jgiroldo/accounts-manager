@@ -1,0 +1,25 @@
+.hole-page {
+  background: #e4e4e4;
+  height: 100%;
+  padding: 15px;
+
+  .menu-area {
+    background: #dcdcdc;
+    padding: 10%;
+    margin: 10%;
+    border-radius: 15px;
+
+    .button-row {
+      display: flex !important;
+
+      a {
+        margin: 0 1%;
+        height: 60px;
+        width: 31%;
+        span {
+            vertical-align: text-top;
+        }
+      }
+    }
+  }
+}
