@@ -13,6 +13,7 @@ import { DashboardModule } from './dashboard/dashboard.module';
 import { AccountsModule } from './accounts/accounts.module';
 import { PersonsModule } from './persons/persons.module';
 import { TransactionsModule } from './transactions/transactions.module';
+import { ThemeService } from './services/theme.service';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -42,7 +43,7 @@ export function createTranslateLoader(http: HttpClient) {
       }
     }),
   ],
-  providers: [TranslateService, MessageService],
+  providers: [TranslateService, MessageService, ThemeService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 

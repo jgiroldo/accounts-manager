@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../environments/environment';
+import { HttpService } from '../services/http.service';
+import { AlertService } from '../services/alert.service';
 
 @Component({
   selector: 'app-transactions',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TransactionsComponent implements OnInit {
 
-  constructor() { }
+  transfersList: any;
+
+  constructor(private httpService: HttpService, private alert: AlertService) { }
 
   ngOnInit() {
+    this.filter();
+  }
+
+  filter() {
+    this.httpService.doGet(environment.transactions_url).subscribe(
+      data => {
+        this.transfersList = data;
+      },
+      err => {
+        this.alert.openAlert('error', 'Erro', err);
+      }
+    );
   }
 
 }

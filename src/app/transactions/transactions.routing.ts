@@ -7,18 +7,10 @@ export const TransactionsRoutes: Routes = [
   {
     path: 'transactions',
     component: TransactionsComponent,
-    children: [
-      { path: '', pathMatch: 'full', redirectTo: 'transfers' },
-      {
-        path: 'transfers',
-        component: TransfersComponent,
-      },
-      {
-        path: 'deposit',
-        component: TransfersComponent,
-      }
-    ]
-  },
+  }, {
+    path: 'transactions/deposit', pathMatch: 'full',
+    component: TransfersComponent,
+  }
 ];
 
 @NgModule({

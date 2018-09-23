@@ -1,3 +1,49 @@
-<p>
-  accounts works!
-</p>
+<div *ngIf="filterForm">
+  <div class="filter-area">
+    <form [formGroup]="filterForm" (keydown.enter)="filter()" novalidate>
+      <div class="filter-row row">
+        <div class="col-3">
+          <mat-form-field>
+            <input matInput placeholder="{{'accounts.name' | translate }}" type="text" formControlName="name"
+              [(ngModel)]="filterObj.name">
+          </mat-form-field>
+        </div>
+        <div class="col-2">
+          <button mat-raised-button type="submit" (click)="filter()">{{ 'actions.filter' | translate }}</button>
+        </div>
+        <div class="col text-right">
+          <button mat-raised-button routerLink="/accounts/new">{{ 'actions.new_account' | translate }}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    <div class="col">
+      <p-treeTable #dt [value]="accountGridList" [resizableColumns]="true">
+        <ng-template pTemplate="header">
+          <tr>
+            <th ttResizableColumn>{{ 'accounts.name' | translate }}</th>
+            <th ttResizableColumn>{{ 'accounts.status' | translate }}</th>
+            <th ttResizableColumn>{{ 'accounts.balance' | translate }}</th>
+            <th ttResizableColumn>{{ 'accounts.person' | translate }}</th>
+            <th ttResizableColumn>{{ 'accounts.creation_date' | translate }}</th>
+            <th class="action-col" ttResizableColumn>{{ 'actions.actions' | translate }}</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
+          <tr [ngClass]=" {'master-account': !rowData.parent_account}">
+            <td>
+              <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
+              {{rowData.name}}
+            </td>
+            <td>{{rowData.status}}</td>
+            <td>{{rowData.balance}}</td>
+            <td>{{rowData.person.name}}</td>
+            <td>{{rowData.creation_date | date}}</td>
+            <td><i class="material-icons" (click)="edit(rowData.id)">edit</i></td>
+          </tr>
+        </ng-template>
+      </p-treeTable>
+    </div>
+  </div>
+</div>

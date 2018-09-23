@@ -1,5 +1,37 @@
 {
+  "accounts": {
+    "accountManagement": "Gerenciamento de Conta",
+    "creation_date": "Data Criação",
+    "parent_account": "Conta Pai",
+    "master_account": "Conta Master",
+    "status": "Status",
+    "person": "Pessoa",
+    "name": "Nome Conta",
+    "balance": "Saldo"
+  },
   "alerts": {
     "SUCCESS": "Sucesso."
+  },
+  "actions": {
+    "filter": "Filtrar",
+    "new_account": "Nova Conta",
+    "cancel": "Cancelar",
+    "save": "Salvar",
+    "actions":"Ação"
+  },
+  "accountStatus": {
+    "ACTIVE": "Ativa",
+    "BLOCKED": "Bloqueada",
+    "CANCELED": "Cancelada"
+  },
+  "validators": {
+    "required":"Campo Obrigatório"
+  },
+  "transfers": {
+    "transfers":"Transferências",
+    "source":"Conta Origem",
+    "destiny":"Conta Destino",
+    "value":"Valor"
   }
+
 }

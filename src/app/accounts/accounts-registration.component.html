@@ -1,3 +1,75 @@
-<p>
-  accounts-registration works!
-</p>
+<div *ngIf="accountFG" class="padding-15 crud-page">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="crud-title">{{ 'accounts.accountManagement' | translate }}</h1>
+      <form [formGroup]="accountFG" novalidate>
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field>
+              <input matInput type="text" placeholder="{{'accounts.name' | translate}}" [(ngModel)]="accountVM.name"
+                formControlName="name" required>
+              <mat-error *ngIf="accountFG.controls.name.hasError('required') && accountFG.controls.name.touched">
+                {{'validators.required' | translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field>
+              <mat-select placeholder="{{'accounts.status' | translate}}" [(ngModel)]="accountVM.status"
+                formControlName="status" required>
+                <mat-option *ngFor="let item of statusList" [value]="item.id">
+                  {{'accountStatus.'+item.description | translate }}
+                </mat-option>
+              </mat-select>
+              <mat-error *ngIf="accountFG.controls.status.hasError('required') && accountFG.controls.status.touched">
+                {{'validators.required' | translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field>
+              <input [(ngModel)]="selectedPerson" [matAutocomplete]="autoPerson" matInput [formControl]="personCtrl"
+                placeholder="{{'accounts.person' | translate}}" required>
+              <mat-autocomplete #autoPerson="matAutocomplete" [displayWith]="displayPerson">
+                <mat-option *ngIf="isAcPersonLoading" class="is-loading">
+                  <mat-spinner diameter="20"></mat-spinner>
+                </mat-option>
+                <ng-container *ngIf="!isAcPersonLoading">
+                  <mat-option *ngFor="let person of filteredPersonsAC" [value]="person" (onSelectionChange)="onPersonSelect(person)">
+                    {{ person.name }}
+                  </mat-option>
+                </ng-container>
+              </mat-autocomplete>
+              <mat-error *ngIf="accountFG.controls.person.hasError('required') && accountFG.controls.person.touched">
+                {{'validators.required' | translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field>
+              <input [(ngModel)]="selectedParent" [matAutocomplete]="autoAccount" matInput [formControl]="accountCtrl"
+                placeholder="{{'accounts.parent_account' | translate}}">
+              <mat-autocomplete #autoAccount="matAutocomplete" [displayWith]="displayParent">
+                <mat-option *ngIf="isAcAccountLoading" class="is-loading">
+                  <mat-spinner diameter="20"></mat-spinner>
+                </mat-option>
+                <ng-container *ngIf="!isAcAccountLoading">
+                  <mat-option *ngFor="let account of filteredAccountsAC" [value]="account" (onSelectionChange)="onAccountSelect(account)">
+                    {{ account.name }}
+                  </mat-option>
+                </ng-container>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+      <div class="btn-area row mt-4">
+        <div class="col-12 text-right">
+          <button type="button" class="mr-3" mat-stroked-button routerLink="/accounts">{{'actions.cancel' | translate}}</button>
+          <button type="button" mat-raised-button (click)="submit()" [disabled]="!accountFG.valid">{{ 'actions.save' |
+            translate }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

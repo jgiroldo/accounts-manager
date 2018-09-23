@@ -1,4 +1,93 @@
-html, body
-{
-    height: 100%;
+html,
+body {
+  height: 100%;
+  background-color: var(--mainBackground);
+}
+
+.container {
+  height: 100%;
+  padding: 15px;
+
+  .filter-area {
+    background: var(--filterBackground);
+    padding-top: 5px;
+
+    .filter-row {
+      display: flex;
+      align-items: center;
+      text-align: right;
+      margin: 0;
+    }
+  }
+
+  .ui-treetable {
+    i{
+      cursor: pointer;
+    }
+    .action-col{
+      width: 5%;
+    }
+    .ui-treetable-thead {
+      tr {
+        th {
+          background: var(--tableHeaderBackground) !important;
+          color: var(--tableHeaderColor) !important
+        }
+      }
+    }
+  }
+
+  .crud-page {
+    background: var(--crudBackground);
+    min-height: 80%;
+    border-radius: var(--crudRadius);
+    margin-top: 5%;
+
+    .crud-title {
+      padding: 15px 30px;
+      color: #555555;
+    }
+
+    form {
+      padding: 15px 35px;
+    }
+
+    .btn-area {
+      padding: 15px 35px;
+    }
+  }
+
+  .mat-form-field {
+    width: 100%;
+
+    &.mat-focused {
+      .mat-form-field-label {
+        color: var(--materialFormFocusColor);
+      }
+
+      .mat-form-field-ripple {
+        background-color: var(--materialFormFocusColor);
+      }
+
+      &.mat-primary {
+        .mat-select-arrow {
+          color: var(--materialFormFocusColor);
+        }
+      }
+    }
+  }
+
+  .mat-raised-button {
+    background: var(--btnRaisedBackground);
+    color: var(--btnRaisedColor);
+    border-radius: var(--btnRaisedRadius);
+    outline: none;
+  }
+
+  .mat-stroked-button {
+    background: var(--btnStrokedBackground);
+    color: var(--btnStrokedColor);
+    border-radius: var(--btnStrokedRadius);
+    outline: none;
+  }
 }

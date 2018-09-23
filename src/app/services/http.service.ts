@@ -1,13 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHandler, HttpHeaders, HttpParams } from '@angular/common/http';
 import { catchError, finalize, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { AlertService } from './alert.service';
 
+export interface IRequestOptions {
+  headers?: HttpHeaders;
+  observe?: 'body';
+  params?: HttpParams;
+  reportProgress?: boolean;
+  responseType?: 'json';
+  withCredentials?: boolean;
+  body?: any;
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class HttpService extends HttpClient {
 
   constructor(private httpHandler: HttpHandler, private translate: TranslateService, private alertService: AlertService) {
@@ -15,9 +26,8 @@ export class HttpService extends HttpClient {
   }
 
 
-  doGet(url: string) {
-    debugger;
-    return super.get(url)
+  doGet(endPoint: string, options?: IRequestOptions) {
+    return super.get(endPoint, options)
       .pipe(
         catchError(this.onCatch),
         tap((res: Response) => {
@@ -31,9 +41,9 @@ export class HttpService extends HttpClient {
       );
   }
 
-  doPost(url: string, body: any) {
-    return super.post(url, body,
-      this.requestOptions())
+  doPost(endPoint: string, params: Object, options?: IRequestOptions) {
+    return super.post(endPoint, params,
+      this.requestOptions(options))
       .pipe(
         catchError(this.onCatch),
         tap(
@@ -48,7 +58,26 @@ export class HttpService extends HttpClient {
       );
   }
 
-  private requestOptions() {
+  doPut(endPoint: string, params: Object, options?: IRequestOptions){
+    return super.put(endPoint, params, options)
+      .pipe(
+        catchError(this.onCatch),
+        tap(
+          (res: Response) => {
+            return this.onSuccess(res);
+          }, (error: any) => {
+            this.onError(error);
+          }),
+        finalize(() => {
+          this.onEnd();
+        })
+      );
+  }
+
+  private requestOptions(option?: any) {
+    if (option) {
+      return option;
+    }
     const httpHeaders = new HttpHeaders({
       'Content-Type': 'application/json',
       'Cache-Control': 'no-cache'
@@ -76,7 +105,7 @@ export class HttpService extends HttpClient {
 
   public onError(res: Response): void {
     console.log('Error, status code: ' + res);
-    let title  = "Erro";
+    let title = "Erro";
     let message;
     // this.translate.get('shared.alert.access_denied').subscribe(data => title = data);
     this.alertService.openAlert('warn', title, JSON.stringify(res));

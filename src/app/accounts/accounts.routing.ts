@@ -13,7 +13,7 @@ export const AccountRoutes: Routes = [
     component: AccountsRegistrationComponent,
   },
   {
-    path: 'accounts/{id}',
+    path: 'accounts/:id',
     component: AccountsRegistrationComponent,
   }
 ];
