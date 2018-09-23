@@ -41,7 +41,7 @@ export class TransactionsComponent implements OnInit {
         this.transfersList = data;
       },
       err => {
-        this.alert.openAlert('error', 'Erro', err);
+        this.alert.openAlert('error', 'alerts.error_title', 'alerts.server_error');
       }
     );
   }
@@ -52,18 +52,18 @@ export class TransactionsComponent implements OnInit {
         this.transactionsTypeList = data;
       },
       err => {
-        this.alert.openAlert('error', 'Erro', err);
+        this.alert.openAlert('error', 'alerts.error_title', 'alerts.server_error');
       });
   }
 
   restore(transaction: Transaction) {
     this.httpService.doPost(environment.accounts_url + '/transfer/chargeback', transaction).subscribe(
       data => {
-        this.alert.openAlert('succes', 'Sucesso', 'Estorno realizado');
+        this.alert.openAlert('succes', 'alerts.success', 'server_success');
         this.filter();
       },
       err => {
-        this.alert.openAlert('error', 'Erro', err);
+        this.alert.openAlert('error', 'alerts.error_title', 'alerts.server_error');
       });
   }
 

@@ -81,8 +81,8 @@ export class AccountsRegistrationComponent implements OnInit {
               },
               err => {
                 this.alertService.openAlert('error',
-                  this.translateSvc.instant('shared.alert.error_title'),
-                  this.translateSvc.instant('shared.alert.server_error'));
+                  this.translateSvc.instant('alerts.error_title'),
+                  this.translateSvc.instant('alerts.server_error'));
               }
             );
           }
@@ -91,8 +91,8 @@ export class AccountsRegistrationComponent implements OnInit {
         },
         err => {
           this.alertService.openAlert('error',
-            this.translateSvc.instant('shared.alert.error_title'),
-            this.translateSvc.instant('shared.alert.server_error'));
+            this.translateSvc.instant('alerts.error_title'),
+            this.translateSvc.instant('alerts.server_error'));
         });
     } else {
       this.accountVM = new Account({});
@@ -117,8 +117,8 @@ export class AccountsRegistrationComponent implements OnInit {
         this.statusList = status;
       }, err => {
         this.alertService.openAlert('error',
-          this.translateSvc.instant('shared.alert.error_title'),
-          this.translateSvc.instant('shared.alert.system_error'));
+          this.translateSvc.instant('alerts.error_title'),
+          this.translateSvc.instant('alerts.server_error'));
       });
   }
 
@@ -156,14 +156,14 @@ export class AccountsRegistrationComponent implements OnInit {
     request.subscribe(
       notification => {
         this.alertService.openAlert('success',
-          this.translateSvc.instant('shared.alert.success_title'),
-          this.translateSvc.instant('alerts.success'));
+          this.translateSvc.instant('alerts.success_title'),
+          this.translateSvc.instant('alerts.server_success'));
         this.router.navigate(['/accounts']);
       },
       error => {
         this.alertService.openAlert('error',
-          this.translateSvc.instant('shared.alert.error_title'),
-          this.translateSvc.instant('shared.alert.save_error'))
+          this.translateSvc.instant('alerts.error_title'),
+          this.translateSvc.instant('alerts.save_error'))
       }
     );
   }

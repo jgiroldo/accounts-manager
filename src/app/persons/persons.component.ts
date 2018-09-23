@@ -42,7 +42,7 @@ export class PersonsComponent implements OnInit {
         this.personsList = data;
       },
       err => {
-        this.alert.openAlert('error', 'Erro', err);
+        this.alert.openAlert('error', 'alerts.error_title', 'alerts.server_error');
       }
     );
   }

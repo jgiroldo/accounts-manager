@@ -36,7 +36,7 @@
               <p-treeTableToggler [rowNode]="rowNode"></p-treeTableToggler>
               {{rowData.name}}
             </td>
-            <td>{{rowData.status}}</td>
+            <td>{{'account-status.'+getStatusName(rowData.status)| translate}}</td>
             <td>{{rowData.balance}}</td>
             <td>{{rowData.person.name}}</td>
             <td>{{rowData.creation_date | date}}</td>

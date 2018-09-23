@@ -19,12 +19,14 @@ export class AccountsComponent implements OnInit {
   accountGridList: TreeNode[];
   filterForm: FormGroup;
   filterObj = new Account({});
+  statusList:any;
 
   constructor(private httpService: HttpService, private alert: AlertService, private fb: FormBuilder, private router: Router) { }
 
   ngOnInit() {
     this.buildForm();
     this.filter();
+    this.fillDDL();
   }
 
   buildForm() {
@@ -41,7 +43,18 @@ export class AccountsComponent implements OnInit {
         this.convertToHierarchy(this.accountsList);
       },
       err => {
-        this.alert.openAlert('error', 'Erro', err);
+        this.alert.openAlert('error', 'alerts.error_title', 'alerts.server_error');
+      }
+    );
+  }
+
+  fillDDL() {
+    this.httpService.doGet(environment.accounts_url + '/account-status').subscribe(
+      data => {
+        this.statusList = data;
+      },
+      err => {
+        this.alert.openAlert('error', 'alerts.error_title', 'alerts.server_error');
       }
     );
   }
@@ -91,6 +104,15 @@ export class AccountsComponent implements OnInit {
 
   edit(id) {
     this.router.navigate(['/accounts/' + id]);
+  }
+
+  getStatusName(statusId: any) {
+    let statusName = '';
+    if (this.statusList && this.statusList.length > 0) {
+      let statusObj = this.statusList.find(status => status.id == statusId);
+      statusName = statusObj.description;
+    }
+    return statusName;
   }
 
 }

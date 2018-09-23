@@ -104,10 +104,6 @@ export class HttpService extends HttpClient {
   }
 
   public onError(res: Response): void {
-    console.log('Error, status code: ' + res);
-    let title = "Erro";
-    let message;
-    // this.translate.get('shared.alert.access_denied').subscribe(data => title = data);
-    this.alertService.openAlert('warn', title, JSON.stringify(res));
+    this.alertService.openAlert('error', 'alerts.error_title', 'alerts.server_error');
   }
 }

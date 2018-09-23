@@ -18,7 +18,7 @@
               <mat-select placeholder="{{'accounts.status' | translate}}" [(ngModel)]="accountVM.status"
                 formControlName="status" required>
                 <mat-option *ngFor="let item of statusList" [value]="item.id">
-                  {{'accountStatus.'+item.description | translate }}
+                  {{'account-status.'+item.description | translate }}
                 </mat-option>
               </mat-select>
               <mat-error *ngIf="accountFG.controls.status.hasError('required') && accountFG.controls.status.touched">

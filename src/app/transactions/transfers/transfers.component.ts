@@ -114,14 +114,14 @@ export class TransfersComponent implements OnInit {
     this.httpService.doPost(environment.accounts_url + '/transfer', this.transferVM).subscribe(
       notification => {
         this.alertService.openAlert('success',
-          this.translateSvc.instant('shared.alert.success_title'),
-          this.translateSvc.instant('alerts.success'));
+          this.translateSvc.instant('alerts.success'),
+          this.translateSvc.instant('alerts.server_success'));
         this.router.navigate(['/transactions']);
       },
       error => {
         this.alertService.openAlert('error',
-          this.translateSvc.instant('shared.alert.error_title'),
-          this.translateSvc.instant('shared.alert.save_error'));
+          this.translateSvc.instant('alerts.error_title'),
+          this.translateSvc.instant('alerts.server_error'));
       }
     );
   }

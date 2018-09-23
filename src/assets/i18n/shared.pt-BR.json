@@ -10,7 +10,10 @@
     "balance": "Saldo"
   },
   "alerts": {
-    "SUCCESS": "Sucesso."
+    "success": "Sucesso",
+    "error_title": "Atenção",
+    "server_error": "Problema ao efetuar ação, tente novamente, ou entre em contato com helpdesk",
+    "server_success": "Ação efetuada com sucesso."
   },
   "actions": {
     "filter": "Filtrar",
@@ -19,7 +22,7 @@
     "save": "Salvar",
     "actions": "Ação"
   },
-  "accountStatus": {
+  "account-status": {
     "ACTIVE": "Ativa",
     "BLOCKED": "Bloqueada",
     "CANCELED": "Cancelada"
@@ -57,13 +60,13 @@
     "company_name": "Nome Fantasia",
     "phisical": "Pessoa Física",
     "legal": "Pessoa Jurídica",
-    "person_type":"Tipo Pessoa",
-    "invalid_cpf_cnpj":"CPF / CNPJ inválido"
+    "person_type": "Tipo Pessoa",
+    "invalid_cpf_cnpj": "CPF / CNPJ inválido"
   },
-  "menu":{
-    "accounts":"Gerenciamento de Contas",
-    "persons":"Gerenciamento de Pessoas",
-    "transactions":"Gerenciamento de Transações"
+  "menu": {
+    "accounts": "Gerenciamento de Contas",
+    "persons": "Gerenciamento de Pessoas",
+    "transactions": "Gerenciamento de Transações"
   }
 
 }
