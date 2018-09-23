@@ -34,14 +34,9 @@ export class PersonsComponent implements OnInit {
   }
 
   filter() {
-    let params = new HttpParams();
-    params.append('name',
-      this.filterObj.name && this.filterObj.name ? this.filterObj.name : '');
-    params.append('social_name',
-      this.filterObj.social_name && this.filterObj.social_name ? this.filterObj.social_name : '');
-    params.append('company_name',
-      this.filterObj.company_name && this.filterObj.company_name ? this.filterObj.company_name : '');
-
+    let params = new HttpParams().set('name', this.filterObj.name ? this.filterObj.name : '')
+      .set('social_name', this.filterObj.social_name ? this.filterObj.social_name : '')
+      .set('company_name', this.filterObj.company_name ? this.filterObj.company_name : '');
     this.httpService.doGet(environment.persons_url, { params: params }).subscribe(
       data => {
         this.personsList = data;

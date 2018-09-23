@@ -5,7 +5,7 @@ import { PersonsRegistrationComponent } from './persons-registration.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import {
   MatInputModule, MatButtonModule, MatFormFieldModule, MatSelectModule,
-  MatAutocompleteModule, MatProgressSpinnerModule, MatIconModule
+  MatAutocompleteModule, MatProgressSpinnerModule, MatIconModule, MatDatepickerModule, MatNativeDateModule
 } from '@angular/material';
 import { RouterModule } from '@angular/router';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -27,6 +27,8 @@ import { CpfCnpjFormatPipe } from '../utils/pipes/cpf_cnpj_pipe';
     MatAutocompleteModule,
     MatProgressSpinnerModule,
     MatIconModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

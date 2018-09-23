@@ -1,3 +1,78 @@
-<p>
-  persons-registration works!
-</p>
+<div *ngIf="personFG" class="padding-15 crud-page">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="crud-title">{{ 'accounts.accountManagement' | translate }}</h1>
+      <form [formGroup]="personFG" novalidate>
+        <div class="row">
+          <div class="col-4">
+            <mat-form-field>
+              <mat-select placeholder="{{'persons.person_type' | translate}}" [(ngModel)]="personType" [ngModelOptions]="{standalone: true}">
+                <mat-option *ngFor="let item of personTypeList" [value]="item.id">
+                  {{'persons.'+item.description | translate }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-4" *ngIf="personType == 1">
+            <mat-form-field>
+              <input matInput type="text" placeholder="{{'persons.name' | translate}}" [(ngModel)]="personVM.name"
+                formControlName="name" required>
+              <mat-error *ngIf="personFG.controls.name.hasError('required') && personFG.controls.name.touched">
+                {{'validators.required' | translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-4" *ngIf="personType == 2">
+            <mat-form-field>
+              <input matInput type="text" placeholder="{{'persons.social_name' | translate}}" [(ngModel)]="personVM.social_name"
+                formControlName="social_name" required>
+              <mat-error *ngIf="personFG.controls.social_name.hasError('required') && personFG.controls.social_name.touched">
+                {{'validators.required' | translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-4" *ngIf="personType == 2">
+            <mat-form-field>
+              <input matInput type="text" placeholder="{{'persons.company_name' | translate}}" [(ngModel)]="personVM.company_name"
+                formControlName="company_name" required>
+              <mat-error *ngIf="personFG.controls.company_name.hasError('required') && personFG.controls.company_name.touched">
+                {{'validators.required' | translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-4">
+            <mat-form-field>
+              <input matInput type="text" placeholder="{{'persons.cpf_cnpj' | translate}}" [(ngModel)]="personVM.cpf_cnpj"
+                formControlName="cpf_cnpj" required>
+              <mat-error *ngIf="personFG.controls.cpf_cnpj.hasError('required') && personFG.controls.cpf_cnpj.touched">
+                {{'validators.required' | translate}}
+              </mat-error>
+              <mat-error *ngIf="personFG.controls.cpf_cnpj.hasError('invalidCPF')  && personFG.controls.cpf_cnpj.touched
+            && !personFG.controls.cpf_cnpj.hasError('required')">
+                {{ validators+'.invalid_cpf_cnpj' | translate }}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-4">
+            <mat-form-field>
+              <input matInput [matDatepicker]="dp" readonly placeholder="{{'persons.birth_date' | translate}}"
+                [(ngModel)]="personVM.birth_date" formControlName="birth_date" required>
+              <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+              <mat-datepicker #dp></mat-datepicker>
+              <mat-error *ngIf="personFG.controls.birth_date.hasError('required') && personFG.controls.birth_date.touched">
+                {{'validators.required' | translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+      </form>
+      <div class="btn-area row mt-4">
+        <div class="col-12 text-right">
+          <button type="button" class="mr-3" mat-stroked-button routerLink="/persons">{{'actions.cancel' | translate}}</button>
+          <button type="button" mat-raised-button (click)="submit()" [disabled]="!personFG.valid">{{ 'actions.save' |
+            translate }}</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

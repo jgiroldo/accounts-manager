@@ -49,12 +49,16 @@
     "CHARGEBACK": "Estorno"
   },
   "persons": {
-    "new":"Novo Cadastro",
-    "cpf_cnpj": "CPF_CNPJ",
+    "new": "Novo Cadastro",
+    "cpf_cnpj": "CPF/CNPJ",
     "name": "Pessoa",
     "birth_date": "Nascimento / Abertura Empresa",
     "social_name": "Razão Social",
-    "company_name": "Nome Fantasia"
+    "company_name": "Nome Fantasia",
+    "phisical": "Pessoa Física",
+    "legal": "Pessoa Jurídica",
+    "person_type":"Tipo Pessoa",
+    "invalid_cpf_cnpj":"CPF / CNPJ inválido"
   }
 
 }
