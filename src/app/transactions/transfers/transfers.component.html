@@ -16,12 +16,12 @@
           <div class="col-6 middle-align">
             <mat-form-field>
               <mat-select placeholder="{{'transactions.operation_type' | translate}}" [(ngModel)]="transferType"
-                [ngModelOptions]="{standalone: true}" >
+                [ngModelOptions]="{standalone: true}">
                 <mat-option [value]="1" (onSelectionChange)="onTypeChange(1)">
-                  {{'transactions_type.All' | translate }}
+                  {{'transactions_type.INJECTION' | translate }}
                 </mat-option>
                 <mat-option [value]="2" (onSelectionChange)="onTypeChange(2)">
-                  {{'transactions_type.All' | translate }}
+                  {{'transactions_type.TRANSFER' | translate }}
                 </mat-option>
               </mat-select>
             </mat-form-field>

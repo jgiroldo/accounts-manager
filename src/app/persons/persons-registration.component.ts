@@ -92,7 +92,7 @@ export class PersonsRegistrationComponent implements OnInit {
     request.subscribe(
       notification => {
         this.alertService.openAlert('success',
-          this.translateSvc.instant('alerts.success_title'),
+          this.translateSvc.instant('alerts.success'),
           this.translateSvc.instant('alerts.server_success'));
         this.router.navigate(['/persons']);
       },
