@@ -1,64 +1,76 @@
 <div *ngIf="transferFG" class="padding-15 crud-page">
-    <div class="row">
-      <div class="col-12">
-        <h1 class="crud-title">{{'transfers.transfers' | translate }}</h1>
-        <form [formGroup]="transferFG" novalidate>
-          <div class="row">
-            
-            <div class="col-6">
-              <mat-form-field>
-                <input [(ngModel)]="selectedSource" [matAutocomplete]="autoSource" matInput [formControl]="sourceCtrl"
+  <div class="row">
+    <div class="col-12">
+      <h1 class="crud-title">{{'transfers.transfers' | translate }}</h1>
+      <form [formGroup]="transferFG" novalidate>
+        <div class="row">
+          <div class="col-6 ">
+            <mat-form-field>
+              <input matInput type="text" placeholder="{{'transfers.value' | translate}}" [(ngModel)]="transferVM.value"
+                formControlName="value" required>
+              <mat-error *ngIf="transferFG.controls.value.hasError('required') && transferFG.controls.value.touched">
+                {{'validators.required' | translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-6 middle-align">
+            <mat-form-field>
+              <mat-select placeholder="{{'transactions.operation_type' | translate}}" [(ngModel)]="transferType"
+                [ngModelOptions]="{standalone: true}" >
+                <mat-option [value]="1" (onSelectionChange)="onTypeChange(1)">
+                  {{'transactions_type.All' | translate }}
+                </mat-option>
+                <mat-option [value]="2" (onSelectionChange)="onTypeChange(2)">
+                  {{'transactions_type.All' | translate }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-6" *ngIf="transferType==2">
+            <mat-form-field>
+              <input [(ngModel)]="selectedSource" [matAutocomplete]="autoSource" matInput [formControl]="sourceCtrl"
                 placeholder="{{'transfers.source' | translate}}" required>
-                <mat-autocomplete #autoSource="matAutocomplete" [displayWith]="displaySource">
-                  <mat-option *ngIf="isAcSourceLoading" class="is-loading">
-                    <mat-spinner diameter="20"></mat-spinner>
+              <mat-autocomplete #autoSource="matAutocomplete" [displayWith]="displaySource">
+                <mat-option *ngIf="isAcSourceLoading" class="is-loading">
+                  <mat-spinner diameter="20"></mat-spinner>
+                </mat-option>
+                <ng-container *ngIf="!isAcSourceLoading">
+                  <mat-option *ngFor="let source of filteredSource" [value]="source" (onSelectionChange)="onSourceSelect(source)">
+                    {{ source.name }}
                   </mat-option>
-                  <ng-container *ngIf="!isAcSourceLoading">
-                    <mat-option *ngFor="let source of filteredSource" [value]="source" (onSelectionChange)="onSourceSelect(source)">
-                      {{ source.name }}
-                    </mat-option>
-                  </ng-container>
-                </mat-autocomplete>
-                <mat-error *ngIf="transferFG.controls.source_account.hasError('required') && transferFG.controls.source_account.touched">
-                  {{'validators.required' | translate}}
-                </mat-error>
-              </mat-form-field>
-            </div>
-            <div class="col-6">
-              <mat-form-field>
-                <input [(ngModel)]="selectedDestiny" [matAutocomplete]="autoDestiny" matInput [formControl]="destinyCtrl"
+                </ng-container>
+              </mat-autocomplete>
+              <mat-error *ngIf="transferFG.controls.source_account.hasError('required') && transferFG.controls.source_account.touched">
+                {{'validators.required' | translate}}
+              </mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <mat-form-field>
+              <input [(ngModel)]="selectedDestiny" [matAutocomplete]="autoDestiny" matInput [formControl]="destinyCtrl"
                 placeholder="{{'transfers.destiny' | translate}}" required>
-                <mat-autocomplete #autoDestiny="matAutocomplete" [displayWith]="displayDestiny">
-                  <mat-option *ngIf="isAcDestinyLoading" class="is-loading">
-                    <mat-spinner diameter="20"></mat-spinner>
+              <mat-autocomplete #autoDestiny="matAutocomplete" [displayWith]="displayDestiny">
+                <mat-option *ngIf="isAcDestinyLoading" class="is-loading">
+                  <mat-spinner diameter="20"></mat-spinner>
+                </mat-option>
+                <ng-container *ngIf="!isAcDestinyLoading">
+                  <mat-option *ngFor="let destiny of filteredDestiny" [value]="destiny" (onSelectionChange)="onDestinySelect(destiny)">
+                    {{ destiny.name }}
                   </mat-option>
-                  <ng-container *ngIf="!isAcDestinyLoading">
-                    <mat-option *ngFor="let destiny of filteredDestiny" [value]="destiny" (onSelectionChange)="onDestinySelect(destiny)">
-                      {{ destiny.name }}
-                    </mat-option>
-                  </ng-container>
-                </mat-autocomplete>
-              </mat-form-field>
-            </div>
-            <div class="col-6 col-offset-3">
-              <mat-form-field>
-                <input matInput type="text" placeholder="{{'transfers.value' | translate}}" [(ngModel)]="transferVM.name"
-                  formControlName="value" required>
-                <mat-error *ngIf="transferFG.controls.value.hasError('required') && transferFG.controls.value.touched">
-                  {{'validators.required' | translate}}
-                </mat-error>
-              </mat-form-field>
-            </div>
+                </ng-container>
+              </mat-autocomplete>
+            </mat-form-field>
           </div>
-        </form>
-        <div class="btn-area row mt-4">
-          <div class="col-12 text-right">
-            <button type="button" class="mr-3" mat-stroked-button routerLink="/transactions">{{'actions.cancel' | translate}}</button>
-            <button type="button" mat-raised-button (click)="submit()" [disabled]="!transferFG.valid">{{ 'actions.save' |
-              translate }}</button>
-          </div>
+        </div>
+      </form>
+      <div class="btn-area row mt-4">
+        <div class="col-12 text-right">
+          <button type="button" class="mr-3" mat-stroked-button routerLink="/transactions">{{'actions.cancel' |
+            translate}}</button>
+          <button type="button" mat-raised-button (click)="submit()" [disabled]="!transferFG.valid">{{ 'actions.save' |
+            translate }}</button>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

@@ -20,14 +20,14 @@ body {
     }
   }
 
-  .ui-treetable {
+  .ui-treetable, .ui-table {
     i{
       cursor: pointer;
     }
     .action-col{
       width: 5%;
     }
-    .ui-treetable-thead {
+    .ui-treetable-thead, .ui-table-thead {
       tr {
         th {
           background: var(--tableHeaderBackground) !important;

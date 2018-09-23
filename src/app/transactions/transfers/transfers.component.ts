@@ -8,7 +8,7 @@ import { Account } from '../../models/account.model';
 import { AlertService } from '../../services/alert.service';
 import { HttpService } from '../../services/http.service';
 import { environment } from '../../../environments/environment';
-import { HttpParams } from '../../../../node_modules/@angular/common/http';
+import { HttpParams } from '@angular/common/http';
 @Component({
   selector: 'app-transfers',
   templateUrl: './transfers.component.html',
@@ -25,6 +25,8 @@ export class TransfersComponent implements OnInit {
   filteredDestiny: any;
   isAcSourceLoading: boolean;
   isAcDestinyLoading: boolean;
+  transferType: number;
+
   constructor(
     public route: ActivatedRoute,
     private alertService: AlertService,
@@ -63,6 +65,7 @@ export class TransfersComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.transferType = 1;
     this.transferVM = new Transfer({});
     this.buildForm();
   }
@@ -71,18 +74,22 @@ export class TransfersComponent implements OnInit {
     this.transferFG = this.formBuilder.group({
       'source_account': [this.transferVM.source_id, Validators.required],
       'destiny_account': [this.transferVM.destiny_id, Validators.required],
-      'value': [this.transferVM.value, Validators.required],
+      'value': [this.transferVM.value, Validators.compose([Validators.required, Validators.min(0.1)])],
     });
   }
 
   onSourceSelect(source: any) {
     this.transferVM.source_id = source.id;
-    this.transferFG.updateValueAndValidity();
+    let sourceValidator = this.transferFG.get('source_account');
+    sourceValidator.setValue(source.id);
+    sourceValidator.updateValueAndValidity();
   }
 
   onDestinySelect(destiny: any) {
     this.transferVM.destiny_id = destiny.id;
-    this.transferFG.updateValueAndValidity();
+    let destinyValidator = this.transferFG.get('destiny_account');
+    destinyValidator.setValue(destiny.id);
+    destinyValidator.updateValueAndValidity();
   }
 
   displaySource(account: Account) {
@@ -91,6 +98,17 @@ export class TransfersComponent implements OnInit {
 
   displayDestiny(account: Account) {
     if (account) { return account.name; }
+  }
+
+  onTypeChange(type: number) {
+    debugger;
+    let sourceValidator = this.transferFG.get('source_account');
+    if (type === 1) {
+      sourceValidator.setValidators(null);
+    } else {
+      sourceValidator.setValidators([Validators.required]);
+    }
+    sourceValidator.updateValueAndValidity();
   }
 
   submit() {

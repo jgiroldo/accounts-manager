@@ -3,8 +3,8 @@ export class Person {
     cpf_cnpj: string;
     name: string;
     birth_date: string | Date;
-    social_name: number;
-    company_name: number;
+    social_name: string;
+    company_name: string;
 
     constructor(p: any) {
         this.id = p.id;

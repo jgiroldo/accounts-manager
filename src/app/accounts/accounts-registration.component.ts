@@ -124,6 +124,9 @@ export class AccountsRegistrationComponent implements OnInit {
 
   onPersonSelect(person: any) {
     this.accountVM.person_id = person.id;
+    let accountValidator = this.accountFG.get('person');
+    accountValidator.setValue(person.id);
+    accountValidator.updateValueAndValidity();
   }
 
   onAccountSelect(account: any) {

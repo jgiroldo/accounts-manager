@@ -1,3 +1,54 @@
-<p>
-  persons works!
-</p>
+<div *ngIf="filterForm">
+  <div class="filter-area">
+    <form [formGroup]="filterForm" (keydown.enter)="filter()" novalidate>
+      <div class="filter-row row">
+        <div class="col-2">
+          <mat-form-field>
+            <input matInput type="text" placeholder="{{'persons.name' | translate}}" [(ngModel)]="filterObj.name"
+              formControlName="name">
+          </mat-form-field>
+        </div>
+        <div class="col-2">
+          <mat-form-field>
+            <input matInput type="text" placeholder="{{'persons.social_name' | translate}}" [(ngModel)]="filterObj.social_name"
+              formControlName="social_name">
+          </mat-form-field>
+        </div>
+        <div class="col-2">
+          <mat-form-field>
+            <input matInput type="text" placeholder="{{'persons.company_name' | translate}}" [(ngModel)]="filterObj.company_name"
+              formControlName="company_name">
+          </mat-form-field>
+        </div>
+        <div class="col-2">
+          <button mat-raised-button type="submit" (click)="filter()">{{ 'actions.filter' | translate }}</button>
+        </div>
+        <div class="col text-right">
+          <button mat-raised-button routerLink="/persons/new">{{ 'persons.new' | translate }}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    <div class="col">
+      <p-table #dt [value]="personsList" [resizableColumns]="true">
+        <ng-template pTemplate="header">
+          <tr>
+            <th ttResizableColumn>{{ 'persons.cpf_cnpj' | translate }}</th>
+            <th ttResizableColumn>{{ 'persons.name' | translate }}</th>
+            <th ttResizableColumn>{{ 'persons.birth_date' | translate }}</th>
+            <th class="action-col" ttResizableColumn>{{ 'actions.actions' | translate }}</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+          <tr>
+            <td>{{rowData.cpf_cnpj | cpfCnpj}}</td>
+            <td>{{rowData.name ? rowData.name : ( rowData.social_name + ' - ' +rowData.company_name )}}</td>
+            <td>{{rowData.birth_date | date}}</td>
+            <td><i class="material-icons" (click)="edit(rowData.id)">edit</i></td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+  </div>
+</div>

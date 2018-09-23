@@ -1,28 +1,54 @@
-<div class="row">
-  <div class="col">
-    <p-table #dt [value]="transfersList" [resizableColumns]="true">
-      <ng-template pTemplate="header">
-        <tr>
-          <th ttResizableColumn>{{ 'accounts.name' | translate }}</th>
-          <th ttResizableColumn>{{ 'accounts.status' | translate }}</th>
-          <th ttResizableColumn>{{ 'accounts.balance' | translate }}</th>
-          <th ttResizableColumn>{{ 'accounts.person' | translate }}</th>
-          <th ttResizableColumn>{{ 'accounts.creation_date' | translate }}</th>
-          <th class="action-col" ttResizableColumn>{{ 'actions.actions' | translate }}</th>
-        </tr>
-      </ng-template>
-      <ng-template pTemplate="body" let-rowNode let-rowData="rowData">
-        <tr [ngClass]=" {'master-account': !rowData.parent_account}">
-          <td>
-            {{rowData.name}}
-          </td>
-          <td>{{rowData.status}}</td>
-          <td>{{rowData.balance}}</td>
-          <td>{{rowData.person.name}}</td>
-          <td>{{rowData.creation_date | date}}</td>
-          <td><i class="material-icons" (click)="edit(rowData.id)">edit</i></td>
-        </tr>
-      </ng-template>
-    </p-table>
+<div *ngIf="filterForm">
+  <div class="filter-area">
+    <form [formGroup]="filterForm" (keydown.enter)="filter()" novalidate>
+      <div class="filter-row row">
+        <div class="col-3">
+          <mat-form-field>
+            <mat-select placeholder="{{'transactions.operation_type' | translate}}" [(ngModel)]="filterObj.operation_type"
+              formControlName="type" required>
+              <mat-option [value]="0">
+                {{'transactions_type.All' | translate }}
+              </mat-option>
+              <mat-option *ngFor="let item of transactionsTypeList" [value]="item.id">
+                {{'transactions_type.'+item.description | translate }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-2">
+          <button mat-raised-button type="submit" (click)="filter()">{{ 'actions.filter' | translate }}</button>
+        </div>
+        <div class="col text-right">
+          <button mat-raised-button routerLink="/transactions/deposit">{{ 'transactions.new_transaction' | translate }}</button>
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="row">
+    <div class="col">
+      <p-table #dt [value]="transfersList" [resizableColumns]="true">
+        <ng-template pTemplate="header">
+          <tr>
+            <th ttResizableColumn>{{ 'transactions.operation_type' | translate }}</th>
+            <th ttResizableColumn>{{ 'transactions.source_account' | translate }}</th>
+            <th ttResizableColumn>{{ 'transactions.destiny_account' | translate }}</th>
+            <th ttResizableColumn>{{ 'transactions.value' | translate }}</th>
+            <th ttResizableColumn>{{ 'transactions.operation_date' | translate }}</th>
+            <th class="action-col" ttResizableColumn>{{ 'actions.actions' | translate }}</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-rowData>
+          <tr>
+            <td>{{ 'transactions_type.' +getStatusName(rowData.operation_type) | translate}}</td>
+            <td>{{rowData.source_account? rowData.source_account.name : ('transactions.external-account' | translate)}}</td>
+            <td>{{rowData.destiny_account? rowData.destiny_account.name : ('transactions.external-account' |
+              translate)}}</td>
+            <td>{{rowData.value}}</td>
+            <td>{{rowData.operation_date | date}}</td>
+            <td><i *ngIf="rowData.operation_type != 3 && rowData.is_reversed != true " class="material-icons" (click)="restore(rowData)">restore</i></td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
   </div>
 </div>

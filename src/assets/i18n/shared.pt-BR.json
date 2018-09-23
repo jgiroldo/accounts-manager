@@ -17,7 +17,7 @@
     "new_account": "Nova Conta",
     "cancel": "Cancelar",
     "save": "Salvar",
-    "actions":"Ação"
+    "actions": "Ação"
   },
   "accountStatus": {
     "ACTIVE": "Ativa",
@@ -25,13 +25,36 @@
     "CANCELED": "Cancelada"
   },
   "validators": {
-    "required":"Campo Obrigatório"
+    "required": "Campo Obrigatório"
   },
   "transfers": {
-    "transfers":"Transferências",
-    "source":"Conta Origem",
-    "destiny":"Conta Destino",
-    "value":"Valor"
+    "transfers": "Transferências",
+    "source": "Conta Origem",
+    "destiny": "Conta Destino",
+    "value": "Valor"
+  },
+  "transactions": {
+    "new_transaction": "Nova Transação",
+    "operation_date": "Data Transação",
+    "operation_type": "Tipo Transação",
+    "source_account": "Conta Origem",
+    "destiny_account": "Conta Destino",
+    "value": "Valor",
+    "external-account": "Conta externa"
+  },
+  "transactions_type": {
+    "All": "Todos",
+    "INJECTION": "Aporte",
+    "TRANSFER": "Transferência",
+    "CHARGEBACK": "Estorno"
+  },
+  "persons": {
+    "new":"Novo Cadastro",
+    "cpf_cnpj": "CPF_CNPJ",
+    "name": "Pessoa",
+    "birth_date": "Nascimento / Abertura Empresa",
+    "social_name": "Razão Social",
+    "company_name": "Nome Fantasia"
   }
 
 }
