@@ -1,0 +1,8 @@
+<div *ngIf="showHeader()" class="header-menu">
+  <div class="row center-align">
+    <button [ngClass]="{'link-active': verifyRoute('accounts')}"  type="button" class="mr-3" mat-button routerLink="/accounts">{{'menu.accounts' | translate}}</button>
+    <button [ngClass]="{'link-active': verifyRoute('persons')}" type="button" class="mr-3" mat-button routerLink="/persons">{{'menu.persons' | translate}}</button>
+    <button [ngClass]="{'link-active': verifyRoute('transactions')}" type="button" class="mr-3" mat-button routerLink="/transactions">{{'menu.transactions' |
+      translate}}</button>
+  </div>
+</div>

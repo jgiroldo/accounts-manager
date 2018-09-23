@@ -14,6 +14,7 @@ import { AccountsModule } from './accounts/accounts.module';
 import { PersonsModule } from './persons/persons.module';
 import { TransactionsModule } from './transactions/transactions.module';
 import { ThemeService } from './services/theme.service';
+import { HeaderMenuComponent } from './shared/header-menu/header-menu.component';
 
 
 export function createTranslateLoader(http: HttpClient) {
@@ -23,6 +24,7 @@ export function createTranslateLoader(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderMenuComponent,
   ],
   imports: [
     BrowserModule,

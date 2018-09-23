@@ -101,7 +101,6 @@ export class TransfersComponent implements OnInit {
   }
 
   onTypeChange(type: number) {
-    debugger;
     let sourceValidator = this.transferFG.get('source_account');
     if (type === 1) {
       sourceValidator.setValidators(null);

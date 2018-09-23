@@ -14,20 +14,22 @@ export class AppComponent implements OnInit {
     { '--mainBackground': '#eaeaea' },
     { '--filterBackground': '#cacaca' },
     { '--masterAccountColor': '#F00' },
-    { '--tableHeaderColor': '#FFF'},
-    { '--tableHeaderBackground': '#F00'},
-    { '--btnRaisedBackground': '#F00'},
+    { '--tableHeaderColor': '#FFF' },
+    { '--tableHeaderBackground': '#F00' },
+    { '--btnRaisedBackground': '#F00' },
     { '--btnRaisedColor': '#FFF' },
     { '--btnRaisedRadius': '10px' },
-    { '--btnStrokedBackground': '#eaeaea'},
+    { '--btnStrokedBackground': '#eaeaea' },
     { '--btnStrokedColor': '#F00' },
     { '--btnStrokedRadius': '10px' },
     { '--materialFormFocusColor': '#555555' },
     { '--crudBackground': '#e4e4e4' },
     { '--crudRadius': '10px' },
+    { '--headerBackground': '#555555' },
+    { '--headerColor': '#FFF' }
 
   ];
-  constructor(private translate: TranslateService, private theme : ThemeService) {
+  constructor(private translate: TranslateService, private theme: ThemeService) {
   }
 
   ngOnInit() {

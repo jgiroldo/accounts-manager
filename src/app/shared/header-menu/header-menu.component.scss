@@ -1,0 +1,24 @@
+.header-menu {
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  background: var(--headerBackground);
+  color: var(--headerColor);
+
+  .center-align {
+    display: table;
+    margin: auto;
+
+    button {
+      border-radius: var(--btnRaisedRadius);
+      padding: 3px;
+      width: 250px;
+      outline: none;
+      border: none;
+
+      &.link-active {
+        background-image: linear-gradient(var(--filterBackground), var(--btnRaisedBackground) 50px);
+      }
+    }
+  }
+}

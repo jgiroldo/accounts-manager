@@ -4,19 +4,37 @@
     margin: 10%;
     border-radius: 15px;
 
+    .icon-row {
+      display: flex;
+
+      .icon {
+        width: 250px;
+
+        img {
+          display: table;
+          margin: auto;
+          outline: none;
+          cursor: pointer;
+        }
+      }
+    }
+
     .button-row {
       display: flex;
 
-      a {
-        margin: 0 1%;
-        height: 60px;
-        width: 31%;
-
-        ::ng-deep .mat-button-wrapper {
-          vertical-align: text-top;
-          font-size: xx-large;
-          color: #0056b3;
-        }
+      .mat-button {
+        color: var(--btnRaisedColor);
+        font-weight: bold;
+        font-size: 18px;
+        height: 70px;
+        border-radius: var(--btnRaisedRadius);
+        padding: 3px;
+        width: 250px;
+        outline: none;
+        border: none;
+        white-space: normal;
+        background: var(--btnRaisedBackground);
+        line-height: unset !important;
       }
     }
   }

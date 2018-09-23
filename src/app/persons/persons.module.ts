@@ -12,7 +12,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { createTranslateLoader } from '../app.module';
 import { TableModule } from 'primeng/table';
-import { CpfCnpjFormatPipe } from '../utils/pipes/cpf_cnpj_pipe';
+import { CpfCnpjFormatPipe } from '../shared/pipes/cpf_cnpj_pipe';
 @NgModule({
   imports: [
     CommonModule,

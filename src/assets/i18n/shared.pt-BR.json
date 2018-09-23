@@ -59,6 +59,11 @@
     "legal": "Pessoa Jurídica",
     "person_type":"Tipo Pessoa",
     "invalid_cpf_cnpj":"CPF / CNPJ inválido"
+  },
+  "menu":{
+    "accounts":"Gerenciamento de Contas",
+    "persons":"Gerenciamento de Pessoas",
+    "transactions":"Gerenciamento de Transações"
   }
 
 }

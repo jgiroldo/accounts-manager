@@ -69,7 +69,7 @@ export class TransactionsComponent implements OnInit {
 
   getStatusName(statusId: any) {
     let statusName = '';
-    if (this.transactionsTypeList.length > 0) {
+    if (this.transactionsTypeList && this.transactionsTypeList.length > 0) {
       let statusObj = this.transactionsTypeList.find(status => status.id == statusId);
       statusName = statusObj.description;
     }

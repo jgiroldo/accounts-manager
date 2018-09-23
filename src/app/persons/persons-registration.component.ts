@@ -6,7 +6,7 @@ import { AlertService } from '../services/alert.service';
 import { HttpService } from '../services/http.service';
 import { environment } from '../../environments/environment';
 import { Person } from '../models/person.model';
-import { CpfCnpjValidator } from '../utils/validators/cpf_cnpj_validator';
+import { CpfCnpjValidator } from '../shared/validators/cpf_cnpj_validator';
 
 @Component({
   selector: 'app-persons-registration',

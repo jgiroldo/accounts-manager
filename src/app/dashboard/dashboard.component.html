@@ -1,9 +1,21 @@
 <div class="whole-page">
   <div class="menu-area">
+    <div class="icon-row">
+      <div class="icon">
+        <img src="../../assets/img/1.svg" routerLink="/accounts">
+      </div>
+      <div class="icon ml-1 mr-1">
+        <img src="../../assets/img/2.svg" routerLink="/persons">
+      </div>
+      <div class="icon">
+        <img src="../../assets/img/4.svg" routerLink="/transactions">
+      </div>
+    </div>
     <div class="button-row">
-      <a mat-raised-button routerLink="/accounts">Gerenciar Contas</a>
-      <a mat-raised-button routerLink="/persons">Gerenciar Pessoas</a>
-      <a mat-raised-button routerLink="/transactions">Transações</a>
+      <button type="button"  mat-button routerLink="/accounts">{{'menu.accounts' | translate}}</button>
+      <button type="button" class="ml-1 mr-1" mat-button routerLink="/persons">{{'menu.persons' | translate}}</button>
+      <button type="button"  mat-button routerLink="/transactions">{{'menu.transactions' |
+        translate}}</button>
     </div>
   </div>
 </div>
